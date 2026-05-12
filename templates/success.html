@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedido Enviado</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <span class="success-icon">✨</span>
+        <h1>Pedido Enviado!</h1>
+        <p class="subtitle" style="margin-bottom: 20px;">O seu pedido de oração foi recebido. Estaremos orando por si.</p>
+        
+        <button onclick="window.location.href='/'" class="btn-secondary">Enviar outro pedido</button>
+    </div>
+</body>
+</html>
