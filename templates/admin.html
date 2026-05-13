@@ -24,7 +24,12 @@
                 {% for prayer in prayers %}
                 <div class="prayer-card">
                     <div class="prayer-header">
-                        <span class="prayer-name">{{ prayer['nome'] }}</span>
+                        <div class="prayer-info">
+                            <span class="prayer-name">{{ prayer['nome'] }}</span>
+                            {% if prayer['telemovel'] %}
+                                <span class="prayer-phone">{{ prayer['telemovel'] }}</span>
+                            {% endif %}
+                        </div>
                         <span class="prayer-date">{{ prayer['data_submissao'] }}</span>
                     </div>
                     <div class="prayer-body">{{ prayer['assunto'] }}</div>

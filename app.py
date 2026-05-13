@@ -23,8 +23,9 @@ def get_local_ip():
 def index():
     if request.method == 'POST':
         nome = request.form['nome']
+        telemovel = request.form.get('telemovel', '')
         assunto = request.form['assunto']
-        add_prayer(nome, assunto)
+        add_prayer(nome, telemovel, assunto)
         return redirect(url_for('success'))
     return render_template('index.html')
 
