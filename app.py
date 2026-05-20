@@ -1,13 +1,23 @@
-from database import get_db_connection
-from flask import Flask, render_template, request, redirect, url_for, send_file
-import qrcode
 import io
 import socket
-from database import init_db, add_prayer, get_all_prayers, delete_prayer
+from database import (
+    add_prayer,
+    delete_prayer,
+    get_all_prayers,
+    get_db_connection,
+    init_db,
+)
+from flask import Flask, redirect, render_template, request, send_file, session, url_for
+import qrcode
 
 app = Flask(__name__)
 
-# Initialize database on startup
+# IMPORTANTE: Mude isto para uma chave longa e aleatória qualquer para proteger as sessões
+app.secret_key = "uma_chave_secreta_muito_segura_aqui"
+
+# A sua palavra-passe estática
+ADMIN_PASSWORD = "1234"
+
 init_db()
 
 
@@ -38,8 +48,39 @@ def success():
     return render_template("success.html")
 
 
+# --- NOVAS ROTAS DE AUTENTICAÇÃO ---
+
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    error = None
+    if request.method == "POST":
+        password_input = request.form.get("password")
+
+        if password_input == ADMIN_PASSWORD:
+            session["logged_in"] = True
+            return redirect(url_for("admin"))
+        else:
+            error = "Palavra-passe incorreta!"
+
+    return render_template("login.html", error=error)
+
+
+@app.route("/logout")
+def logout():
+    session.pop("logged_in", None)
+    return redirect(url_for("login"))
+
+
+# --- ROTA DO ADMIN PROTEGIDA ---
+
+
 @app.route("/admin")
 def admin():
+    # Se não estiver logado, bloqueia e redireciona para o login
+    if not session.get("logged_in"):
+        return redirect(url_for("login"))
+
     prayers = get_all_prayers()
     local_ip = get_local_ip()
     return render_template("admin.html", prayers=prayers, local_ip=local_ip)
@@ -47,6 +88,10 @@ def admin():
 
 @app.route("/delete/<int:prayer_id>", methods=["POST"])
 def delete(prayer_id):
+    # Protege também a ação de eliminar
+    if not session.get("logged_in"):
+        return "Não autorizado", 401
+
     delete_prayer(prayer_id)
     return redirect(url_for("admin"))
 
