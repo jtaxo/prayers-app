@@ -215,8 +215,8 @@ button:active {
 }
 
 .prayer-body {
-    color: #cbd5e1;
-    line-height: 1.6;
+    word-wrap: break-word;
+    word-break: break-word;
     white-space: pre-wrap;
 }
 
