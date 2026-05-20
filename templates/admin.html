@@ -24,42 +24,33 @@
 
         <div class="prayer-table-section">
             {% if prayers %}
-            <table class="prayer-table" style="width:100%; border-collapse: collapse; margin-top: 20px;">
-                <thead>
-                    <tr style="border-bottom:1px solid #e2e8f0;">
-                        <th style="padding:8px; border:1px solid #e2e8f0;">ID</th>
-                        <th style="padding:8px; border:1px solid #e2e8f0;">Nome</th>
-                        <th style="padding:8px; border:1px solid #e2e8f0;">Telemóvel</th>
-                        <th style="padding:8px; border:1px solid #e2e8f0;">Assunto</th>
-                        <th style="padding:8px; border:1px solid #e2e8f0;">Data</th>
-                        <th style="padding:8px; border:1px solid #e2e8f0;">Ações</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for prayer in prayers %}
-                    <tr style="border-bottom:1px solid #e2e8f0;">
-                        <td style="padding:8px; border:1px solid #e2e8f0; text-align:center;">{{ prayer['id'] }}</td>
-                        <td style="padding:8px; border:1px solid #e2e8f0;">{{ prayer['nome'] }}</td>
-                        <td style="padding:8px; border:1px solid #e2e8f0;">{{ prayer['telemovel'] or '' }}</td>
-                        <td style="padding:8px; border:1px solid #e2e8f0;">{{ prayer['assunto'] }}</td>
-                        <td style="padding:8px; border:1px solid #e2e8f0;">{{ prayer['data_submissao'] }}</td>
-                        <td style="padding:8px; border:1px solid #e2e8f0; text-align:center;">
-                            <form action="{{ url_for('delete', prayer_id=prayer['id']) }}" method="POST"
-                                style="margin:0;"
-                                onsubmit="return confirm('Tem a certeza que deseja eliminar este pedido?');">
-                                <button type="submit" class="btn-delete"
-                                    style="background: transparent; border: 1px solid #ef4444; color: #ef4444; padding: 4px 8px; font-size: 12px; cursor: pointer; border-radius: 4px;">Eliminar</button>
+            <div class="prayer-grid">
+            {% if prayers %}
+                {% for prayer in prayers %}
+                <div class="prayer-card">
+                    <div class="prayer-header">
+                        <div class="prayer-info">
+                            <span class="prayer-name">{{ prayer['nome'] }}</span>
+                            {% if prayer['telemovel'] %}
+                                <span class="prayer-phone">{{ prayer['telemovel'] }}</span>
+                            {% endif %}
+                        </div>
+                        <div class="prayer-date-container" style="display: flex; align-items: center; gap: 15px;">
+                            <span class="prayer-date">{{ prayer['data_submissao'] }}</span>
+                            <form action="{{ url_for('delete', prayer_id=prayer['id']) }}" method="POST" style="margin: 0;" onsubmit="return confirm('Tem a certeza que deseja eliminar este pedido?');">
+                                <button type="submit" class="btn-delete" style="background: transparent; border: 1px solid #ef4444; color: #ef4444; padding: 4px 8px; font-size: 12px; cursor: pointer; border-radius: 4px;">Eliminar</button>
                             </form>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+                        </div>
+                    </div>
+                    <div class="prayer-body">{{ prayer['assunto'] }}</div>
+                </div>
+                {% endfor %}
             {% else %}
-            <div class="empty-state">
-                Ainda não há pedidos de oração registados.
-            </div>
+                <div class="empty-state">
+                    Ainda não há pedidos de oração registados.
+                </div>
             {% endif %}
+        </div>
         </div>
     </div>
 </body>
