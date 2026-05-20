@@ -2,8 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, send_file
 import qrcode
 import io
 import socket
-from database import init_db, add_prayer, get_all_prayers
-
+from database import init_db, add_prayer, get_all_prayers, delete_prayer
 app = Flask(__name__)
 
 # Initialize database on startup
@@ -38,6 +37,11 @@ def admin():
     prayers = get_all_prayers()
     local_ip = get_local_ip()
     return render_template('admin.html', prayers=prayers, local_ip=local_ip)
+
+@app.route('/delete/<int:prayer_id>', methods=['POST'])
+def delete(prayer_id):
+    delete_prayer(prayer_id)
+    return redirect(url_for('admin'))
 
 @app.route('/qrcode')
 def generate_qrcode():

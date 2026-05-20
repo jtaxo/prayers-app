@@ -30,7 +30,12 @@
                                 <span class="prayer-phone">{{ prayer['telemovel'] }}</span>
                             {% endif %}
                         </div>
-                        <span class="prayer-date">{{ prayer['data_submissao'] }}</span>
+                        <div class="prayer-date-container" style="display: flex; align-items: center; gap: 15px;">
+                            <span class="prayer-date">{{ prayer['data_submissao'] }}</span>
+                            <form action="{{ url_for('delete', prayer_id=prayer['id']) }}" method="POST" style="margin: 0;" onsubmit="return confirm('Tem a certeza que deseja eliminar este pedido?');">
+                                <button type="submit" class="btn-delete" style="background: transparent; border: 1px solid #ef4444; color: #ef4444; padding: 4px 8px; font-size: 12px; cursor: pointer; border-radius: 4px;">Eliminar</button>
+                            </form>
+                        </div>
                     </div>
                     <div class="prayer-body">{{ prayer['assunto'] }}</div>
                 </div>

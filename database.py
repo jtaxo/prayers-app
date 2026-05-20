@@ -39,3 +39,9 @@ def get_all_prayers():
     prayers = conn.execute('SELECT * FROM prayers ORDER BY data_submissao DESC').fetchall()
     conn.close()
     return prayers
+
+def delete_prayer(prayer_id):
+    conn = get_db_connection()
+    conn.execute('DELETE FROM prayers WHERE id = ?', (prayer_id,))
+    conn.commit()
+    conn.close()
