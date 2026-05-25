@@ -170,7 +170,13 @@ button:active {
     box-shadow: none;
 }
 
-
+@media (max-width: 600px) {
+    .header-actions {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+}
 
 .prayer-grid {
     display: grid;
@@ -183,10 +189,6 @@ button:active {
     border-radius: 12px;
     padding: 20px;
     transition: transform 0.2s;
-    min-width: 0;
-    word-wrap: break-word;
-    word-break: break-word;
-    overflow-wrap: break-word;
 }
 
 .prayer-card:hover {
@@ -201,7 +203,6 @@ button:active {
     margin-bottom: 12px;
     padding-bottom: 12px;
     border-bottom: 1px solid var(--border-color);
-    gap: 15px;
 }
 
 .prayer-name {
