@@ -134,10 +134,10 @@ body {
 }
 
 .brand-logo {
-    height: 24px;
-    /* Create a grayish purple color from a black logo */
-    filter: invert(0.6) sepia(0.4) hue-rotate(230deg) saturate(0.8) brightness(0.9);
-    margin-right: 2px;
+    height: 30px;
+    /* Create a grayish blue color from a black logo */
+    filter: invert(0.65) sepia(0.4) hue-rotate(200deg) saturate(1.2) brightness(1.1);
+    margin-right: 4px;
 }
 
 .brand-accent {
