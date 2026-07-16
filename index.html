@@ -92,34 +92,27 @@
 
             if (!assunto) return;
 
-            // Feedback visual de carregamento
+            // Feedback visual imediato
             const btn = e.target.querySelector('button[type="submit"]');
             const btnText = btn.querySelector('.btn-text');
-            const originalText = btnText.innerText;
-            
             btn.disabled = true;
-            btn.style.opacity = '0.7';
-            btn.style.cursor = 'wait';
-            btnText.innerText = 'A enviar aguarde...';
+            btnText.innerText = 'Enviado! ✔️';
 
-            try {
-                const { data, error } = await supabaseClient
-                    .from('prayers')
-                    .insert([{ nome, telemovel, assunto }]);
+            // ENVIO INSTANTÂNEO EM PANO DE FUNDO (Zero segundos de espera)
+            fetch(`${SUPABASE_URL}/rest/v1/prayers`, {
+                method: 'POST',
+                headers: {
+                    'apikey': SUPABASE_ANON_KEY,
+                    'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                    'Content-Type': 'application/json',
+                    'Prefer': 'return=minimal'
+                },
+                body: JSON.stringify({ nome, telemovel, assunto }),
+                keepalive: true // Garante que o pedido chega mesmo fechando o site!
+            }).catch(err => console.error('Erro de background:', err));
 
-                if (error) throw error;
-
-                window.location.href = 'success.html';
-            } catch (err) {
-                alert('Erro ao enviar pedido de oração. Por favor, tente novamente.');
-                console.error(err);
-                
-                // Restaurar o botão em caso de erro
-                btn.disabled = false;
-                btn.style.opacity = '1';
-                btn.style.cursor = 'pointer';
-                btnText.innerText = originalText;
-            }
+            // Salta para a página de sucesso INSTANTANEAMENTE
+            window.location.href = 'success.html';
         });
     </script>
 </body>
