@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin - Pedidos de Oração</title>
-    <link rel="stylesheet" href="assets/css/style.css?v=2">
+    <link rel="stylesheet" href="../assets/css/style.css?v=2">
     <!-- Supabase JS Client -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
@@ -47,8 +47,8 @@
         </div>
     </div>
 
-    <script src="assets/js/script.js"></script>
-    <script src="assets/js/supabase.js"></script>
+    <script src="../assets/js/script.js"></script>
+    <script src="../assets/js/supabase.js"></script>
     <script>
         // Check session and load prayers
         async function initAdmin() {
@@ -134,7 +134,10 @@
         }
 
         async function handleLogout() {
-            await supabaseClient.auth.signOut();
+            const { error } = await supabaseClient.auth.signOut();
+            if (error) {
+                console.error("Logout error:", error);
+            }
             window.location.href = 'login.html';
         }
 
