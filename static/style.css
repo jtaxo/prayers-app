@@ -608,7 +608,7 @@ body {
     .premium-layout {
         flex-direction: column;
         justify-content: center;
-        padding: 180px 24px 80px;
+        padding: 140px 24px 200px;
         text-align: center;
         gap: 10px;
     }
