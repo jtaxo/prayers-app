@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Pedidos de Oração</title>
+    <link rel="stylesheet" href="static/style.css?v=2">
+    <!-- Supabase JS Client -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+
+<body class="loading">
+    <!-- Ambient glow for mouse tracking -->
+    <div id="ambient-glow"></div>
+    <div id="particles-container"></div>
+    
+    <!-- Animated Mesh Gradient Background -->
+    <div class="mesh-bg">
+        <div class="mesh-blob blob-1"></div>
+        <div class="mesh-blob blob-2"></div>
+        <div class="mesh-blob blob-3"></div>
+    </div>
+
+    <div class="container admin-container">
+        <div class="header-actions">
+            <h1 class="text-gradient" style="margin-bottom: 0;">Dashboard de Orações</h1>
+            <div style="display: flex; gap: 10px;">
+                <button onclick="window.location.href='index.html'" class="btn-secondary">
+                    Ir para o Formulário
+                </button>
+                <button onclick="handleLogout()" class="btn-secondary" style="border-color: rgba(239, 68, 68, 0.4); color: #ef4444;">
+                    Sair
+                </button>
+            </div>
+        </div>
+
+        <div class="qr-section"
+            style="margin-bottom: 30px; border-top: none; padding-top: 0; padding-bottom: 20px; border-bottom: 1px solid var(--glass-border); text-align: center;">
+            <p><strong>QR Code para partilhar:</strong></p>
+            <p id="qrUrl" style="font-size: 12px; color: #94a3b8; margin-bottom: 10px;">URL: A carregar...</p>
+            <img id="qrImage" src="" alt="QR Code" width="150" height="150" style="display: inline-block; background: white; padding: 10px; border-radius: 12px;">
+        </div>
+
+        <div class="prayer-grid" id="prayerGrid">
+            <div class="empty-state">A carregar pedidos de oração...</div>
+        </div>
+    </div>
+
+    <script src="static/script.js"></script>
+    <script src="static/supabase.js"></script>
+    <script>
+        // Check session and load prayers
+        async function initAdmin() {
+            const { data: { session } } = await supabaseClient.auth.getSession();
+            if (!session) {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            // Set up QR Code dynamically
+            const currentUrl = window.location.origin;
+            document.getElementById('qrUrl').innerText = `URL: ${currentUrl}`;
+            document.getElementById('qrImage').src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(currentUrl)}`;
+
+            loadPrayers();
+        }
+
+        async function loadPrayers() {
+            try {
+                const { data: prayers, error } = await supabaseClient
+                    .from('prayers')
+                    .select('*')
+                    .order('created_at', { ascending: false });
+
+                if (error) throw error;
+
+                const grid = document.getElementById('prayerGrid');
+                grid.innerHTML = '';
+
+                if (!prayers || prayers.length === 0) {
+                    grid.innerHTML = '<div class="empty-state">Ainda não há pedidos de oração registados.</div>';
+                    return;
+                }
+
+                prayers.forEach(prayer => {
+                    const card = document.createElement('div');
+                    card.className = 'prayer-card';
+                    
+                    const dateStr = prayer.created_at 
+                        ? new Date(prayer.created_at).toLocaleString('pt-PT') 
+                        : 'Sem data';
+
+                    card.innerHTML = `
+                        <div class="prayer-header">
+                            <div class="prayer-info" style="text-align: left;">
+                                <span class="prayer-name" style="display: block;">Nome: ${escapeHtml(prayer.nome)}</span>
+                                ${prayer.telemovel ? `<span class="prayer-phone" style="display: block; margin-top: 4px;">Telemóvel: ${escapeHtml(prayer.telemovel)}</span>` : ''}
+                            </div>
+                            <div class="prayer-date-container" style="display: flex; align-items: center; gap: 15px;">
+                                <span class="prayer-date">${dateStr}</span>
+                                <button onclick="deletePrayer(${prayer.id})" class="btn-delete"
+                                    style="background: transparent; border: 1px solid #ef4444; color: #ef4444; padding: 4px 8px; font-size: 12px; cursor: pointer; border-radius: 4px; transition: background 0.2s;">
+                                    Eliminar
+                                </button>
+                            </div>
+                        </div>
+                        <div class="prayer-body" style="text-align: left; margin-top: 12px; font-size: 15px; color: #e2e8f0; line-height: 1.5;">${escapeHtml(prayer.assunto)}</div>
+                    `;
+                    grid.appendChild(card);
+                });
+            } catch (err) {
+                console.error('Erro ao carregar orações:', err);
+                document.getElementById('prayerGrid').innerHTML = '<div class="empty-state" style="color: #ef4444;">Erro ao carregar orações. Por favor, tente novamente.</div>';
+            }
+        }
+
+        async function deletePrayer(id) {
+            if (!confirm('Tem a certeza que deseja eliminar este pedido?')) return;
+
+            try {
+                const { error } = await supabaseClient
+                    .from('prayers')
+                    .delete()
+                    .eq('id', id);
+
+                if (error) throw error;
+
+                loadPrayers();
+            } catch (err) {
+                alert('Erro ao eliminar pedido de oração.');
+                console.error(err);
+            }
+        }
+
+        async function handleLogout() {
+            await supabaseClient.auth.signOut();
+            window.location.href = 'login.html';
+        }
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            return str
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+        }
+
+        initAdmin();
+    </script>
+</body>
+
+</html>
