@@ -8,30 +8,41 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
-<body>
-    <div class="container" style="max-width: 400px; margin-top: -100px">
-        <h2>Acesso Restrito</h2>
-        <p style="color: #64748b; font-size: 14px; margin-bottom: 20px;">Introduza a palavra-passe para aceder ao
-            Dashboard.</p>
+<body class="loading">
+    <!-- Ambient glow for mouse tracking -->
+    <div id="ambient-glow"></div>
+    <div id="particles-container"></div>
+    
+    <!-- Animated Mesh Gradient Background -->
+    <div class="mesh-bg">
+        <div class="mesh-blob blob-1"></div>
+        <div class="mesh-blob blob-2"></div>
+        <div class="mesh-blob blob-3"></div>
+    </div>
+
+    <div class="container glass-card" style="margin: 15vh auto;">
+        <h2 style="font-size: 24px; font-weight: 700; margin-bottom: 8px;">Acesso Restrito</h2>
+        <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 24px;">Introduza a palavra-passe para aceder ao Dashboard.</p>
 
         {% if error %}
-        <div
-            style="background-color: #fee2e2; color: #ef4444; padding: 10px; border-radius: 6px; margin-bottom: 15px; font-size: 14px;">
+        <div style="background-color: rgba(239, 68, 68, 0.1); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.3); padding: 12px; border-radius: 12px; margin-bottom: 20px; font-size: 14px;">
             {{ error }}
         </div>
         {% endif %}
 
-        <form method="POST">
-            <div style="margin-bottom: 20px;">
-                <label for="password"
-                    style="display: block; margin-bottom: 8px; font-weight: bold;">Palavra-passe:</label>
-                <input type="password" id="password" name="password" required
-                    style="width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; box-sizing: border-box;">
+        <form method="POST" class="premium-form">
+            <div class="input-group">
+                <input type="password" id="password" name="password" required placeholder=" ">
+                <label for="password">Palavra-passe</label>
+                <div class="input-border"></div>
             </div>
-            <button type="submit" class="btn-primary"
-                style="width: 100%; padding: 10px; background-color: #2563eb; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold;">Entrar</button>
+            <button type="submit" class="premium-btn magnetic-btn">
+                <span class="btn-text">Entrar</span>
+                <div class="btn-glow"></div>
+            </button>
         </form>
     </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 
 </html>

@@ -8,7 +8,18 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
-<body>
+<body class="loading">
+    <!-- Ambient glow for mouse tracking -->
+    <div id="ambient-glow"></div>
+    <div id="particles-container"></div>
+    
+    <!-- Animated Mesh Gradient Background -->
+    <div class="mesh-bg">
+        <div class="mesh-blob blob-1"></div>
+        <div class="mesh-blob blob-2"></div>
+        <div class="mesh-blob blob-3"></div>
+    </div>
+
     <div class="container admin-container">
         <div class="header-actions">
             <h1>Dashboard de Orações</h1>
@@ -54,6 +65,7 @@
             {% endif %}
         </div>
     </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 
 </html>
