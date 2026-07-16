@@ -124,6 +124,8 @@
 
             // Transição Mágica sem carregar páginas novas
             document.getElementById('form-section').style.display = 'none';
+            document.querySelector('.premium-header').style.display = 'none';
+            document.querySelector('.top-right-badge').style.display = 'none';
             document.getElementById('success-section').style.display = 'flex';
             window.scrollTo(0, 0);
 
@@ -140,6 +142,8 @@
         document.getElementById('btn-back').addEventListener('click', () => {
             document.getElementById('success-section').style.display = 'none';
             document.getElementById('form-section').style.display = 'flex';
+            document.querySelector('.premium-header').style.display = '';
+            document.querySelector('.top-right-badge').style.display = '';
         });
     </script>
 </body>
