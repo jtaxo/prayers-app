@@ -1,28 +1,25 @@
 <!DOCTYPE html>
 <html lang="pt">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pedidos de Oração - AD Azambuja</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
+
 <body>
-    <!-- Elementos futuristas de fundo -->
-    <div class="abstract-shape shape-1"></div>
-    <div class="abstract-shape shape-2"></div>
-
-    <!-- Branding no canto superior esquerdo -->
-    <div class="brand-header">
-        <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo AD Azambuja">
-        <span>AD Azambuja</span>
-    </div>
-
     <div class="layout-split">
-        <!-- Lado esquerdo: Texto de boas-vindas -->
+        <!-- Lado esquerdo: Texto de boas-vindas e Branding -->
         <div class="hero-section">
+            <div class="brand-inline">
+                <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo AD Azambuja">
+                <span>AD Azambuja</span>
+            </div>
             <h1 class="hero-title">BEM-VINDO</h1>
             <h2 class="hero-subtitle">PEDIDOS DE ORAÇÃO</h2>
-            <p class="hero-text">Não está sozinho. Deixe o seu pedido e a nossa igreja estará a orar por si e pela sua família. O seu pedido será tratado com o máximo respeito e confidencialidade.</p>
+            <p class="hero-text">Não está sozinho. Deixe o seu pedido e a nossa igreja estará a orar por si e pela sua
+                família. O seu pedido será tratado com o máximo respeito e confidencialidade.</p>
         </div>
 
         <!-- Lado direito: Formulário -->
@@ -38,16 +35,18 @@
                         <label for="telemovel">O seu Telemóvel (Opcional)</label>
                         <input type="tel" id="telemovel" name="telemovel" placeholder="Ex: 912 345 678">
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="assunto">Assunto de Oração</label>
-                        <textarea id="assunto" name="assunto" required placeholder="Descreva aqui o seu pedido de oração..."></textarea>
+                        <textarea id="assunto" name="assunto" required
+                            placeholder="Descreva aqui o seu pedido de oração..."></textarea>
                     </div>
-                    
+
                     <button type="submit">Enviar Pedido</button>
                 </form>
             </div>
         </div>
     </div>
 </body>
+
 </html>

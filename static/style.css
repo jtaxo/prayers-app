@@ -283,24 +283,20 @@ button:active {
    FUTURISTIC LAYOUT - AD AZAMBUJA
    ========================================= */
 
-.brand-header {
-    position: absolute;
-    top: 40px;
-    left: 60px;
+.brand-inline {
     display: flex;
     align-items: center;
     gap: 15px;
-    z-index: 10;
+    margin-bottom: 30px;
     animation: fadeInDown 0.8s ease-out;
 }
 
-.brand-header img {
+.brand-inline img {
     height: 60px;
-    /* Inverte as cores da imagem para ficar branca sobre o fundo escuro/azul */
     filter: invert(1) drop-shadow(0 4px 6px rgba(0,0,0,0.3));
 }
 
-.brand-header span {
+.brand-inline span {
     font-size: 24px;
     font-weight: 700;
     color: white;
@@ -315,16 +311,18 @@ button:active {
     max-width: 1200px;
     margin: 0 auto;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 80px;
     min-height: 80vh;
     z-index: 5;
     position: relative;
-    padding-top: 80px;
+    padding-top: 40px;
 }
 
 .hero-section {
     flex: 1;
-    padding-right: 60px;
+    max-width: 500px;
+    padding-right: 0;
     color: white;
     animation: fadeInLeft 0.8s ease-out;
 }
@@ -356,8 +354,9 @@ button:active {
 
 .form-section {
     flex: 1;
+    max-width: 450px;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     animation: fadeInRight 0.8s ease-out;
 }
 
@@ -365,31 +364,7 @@ button:active {
     max-width: 450px;
 }
 
-/* Formas Abstractas no Fundo (bolas / círculos como na imagem de referência) */
-.abstract-shape {
-    position: fixed;
-    border-radius: 50%;
-    z-index: -2;
-    filter: blur(2px);
-}
-
-.shape-1 {
-    width: 800px;
-    height: 800px;
-    background: linear-gradient(135deg, #1d4ed8 0%, #1e3a8a 100%);
-    top: -200px;
-    left: -200px;
-    opacity: 0.8;
-}
-
-.shape-2 {
-    width: 600px;
-    height: 600px;
-    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
-    bottom: -150px;
-    left: 20%;
-    opacity: 0.6;
-}
+/* Bolas azuis removidas a pedido do utilizador */
 
 @keyframes fadeInLeft {
     from { opacity: 0; transform: translateX(-40px); }
@@ -427,11 +402,7 @@ button:active {
         text-align: center;
     }
     
-    .brand-header {
-        top: 20px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 100%;
+    .brand-inline {
         justify-content: center;
     }
     
