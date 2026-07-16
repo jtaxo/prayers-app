@@ -607,9 +607,10 @@ body {
 @media (max-width: 900px) {
     .premium-layout {
         flex-direction: column;
-        padding: 120px 30px 60px;
+        justify-content: center;
+        padding: 100px 24px 40px;
         text-align: center;
-        gap: 40px;
+        gap: 30px;
     }
 
     .premium-header {
@@ -638,14 +639,23 @@ body {
 
     .hero-title {
         text-align: center;
-        font-size: clamp(32px, 8vw, 42px);
+        font-size: clamp(32px, 8vw, 40px);
+        margin-bottom: 12px;
     }
 
-    .form-header {
-        display: none;
+    .hero-subtitle {
+        font-size: 15px;
+        max-width: 340px;
+        margin: 0 auto 10px;
+    }
+
+    .form-section {
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto;
     }
 
     .glass-card {
-        padding: 30px 20px;
+        padding: 24px 20px;
     }
 }
