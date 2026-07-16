@@ -176,7 +176,7 @@ body {
 }
 
 .brand-logo {
-    height: 50px;
+    height: 45px;
     /* Soft translucent cream/copper tone to match the new dark charcoal theme */
     filter: invert(0.9) sepia(0.2) hue-rotate(340deg) saturate(1.5) opacity(0.8);
     margin-right: 4px;
@@ -185,7 +185,7 @@ body {
 .brand-accent {
     font-weight: 800;
     color: var(--primary-light);
-    font-size: 20px;
+    font-size: 15px;
     letter-spacing: 1px;
     margin-left: -10px;
     margin-right: -5px;
@@ -194,7 +194,7 @@ body {
 .brand-text {
     font-weight: 500;
     color: var(--text-main);
-    font-size: 20px;
+    font-size: 15px;
     letter-spacing: 1px;
     padding-right: 10px;
 }
@@ -506,7 +506,7 @@ body {
     margin: 80px auto;
     position: relative;
     z-index: 10;
-    padding: 0 20px;
+    padding: 30px 30px;
 }
 
 .header-actions {

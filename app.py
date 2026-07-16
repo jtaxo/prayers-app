@@ -35,9 +35,11 @@ def get_local_ip():
 @app.route("/", methods=["GET", "POST"])
 def index():
     if request.method == "POST":
-        nome = request.form["nome"]
-        telemovel = request.form.get("telemovel", "")
-        assunto = request.form["assunto"]
+        nome = request.form.get("nome", "").strip()
+        if not nome:
+            nome = "Anónimo"
+        telemovel = request.form.get("telemovel", "").strip()
+        assunto = request.form.get("assunto", "")
         add_prayer(nome, telemovel, assunto)
         return redirect(url_for("success"))
     return render_template("index.html")
