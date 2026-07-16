@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Pedidos de Oração</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}?v=2">
+</head>
+
+<body class="loading">
+    <!-- Ambient glow for mouse tracking -->
+    <div id="ambient-glow"></div>
+    <div id="particles-container"></div>
+    
+    <!-- Animated Mesh Gradient Background -->
+    <div class="mesh-bg">
+        <div class="mesh-blob blob-1"></div>
+        <div class="mesh-blob blob-2"></div>
+        <div class="mesh-blob blob-3"></div>
+    </div>
+
+    <div class="container admin-container">
+        <div class="header-actions">
+            <h1 class="text-gradient" style="margin-bottom: 0;">Dashboard de Orações</h1>
+            <button onclick="window.location.href='/'" class="btn-secondary">
+                Ir para o Formulário
+            </button>
+        </div>
+
+        <div class="qr-section"
+            style="margin-bottom: 30px; border-top: none; padding-top: 0; padding-bottom: 20px; border-bottom: 1px solid var(--border-color);">
+            <p><strong>QR Code para partilhar:</strong></p>
+            <p style="font-size: 12px; color: #94a3b8; margin-bottom: 10px;">URL: http://{{ local_ip }}:5000/</p>
+            <img src="/qrcode" alt="QR Code" width="150" height="150">
+        </div>
+
+        <div class="prayer-grid">
+            {% if prayers %}
+            {% for prayer in prayers %}
+            <div class="prayer-card">
+                <div class="prayer-header">
+                    <div class="prayer-info">
+                        <span class="prayer-name">Nome: {{ prayer['nome'] }}</span>
+                        {% if prayer['telemovel'] %}
+                        <span class="prayer-phone">Telemóvel: {{ prayer['telemovel'] }}</span>
+                        {% endif %}
+                    </div>
+                    <div class="prayer-date-container" style="display: flex; align-items: center; gap: 15px;">
+                        <span class="prayer-date">{{ prayer['data_submissao'] }}</span>
+                        <form action="{{ url_for('delete', prayer_id=prayer['id']) }}" method="POST" style="margin: 0;"
+                            onsubmit="return confirm('Tem a certeza que deseja eliminar este pedido?');">
+                            <button type="submit" class="btn-delete"
+                                style="background: transparent; border: 1px solid #ef4444; color: #ef4444; padding: 4px 8px; font-size: 12px; cursor: pointer; border-radius: 4px;">Eliminar</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="prayer-body">{{ prayer['assunto'] }}</div>
+            </div>
+            {% endfor %}
+            {% else %}
+            <div class="empty-state">
+                Ainda não há pedidos de oração registados.
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+
+</html>
