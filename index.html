@@ -92,6 +92,16 @@
 
             if (!assunto) return;
 
+            // Feedback visual de carregamento
+            const btn = e.target.querySelector('button[type="submit"]');
+            const btnText = btn.querySelector('.btn-text');
+            const originalText = btnText.innerText;
+            
+            btn.disabled = true;
+            btn.style.opacity = '0.7';
+            btn.style.cursor = 'wait';
+            btnText.innerText = 'A enviar aguarde...';
+
             try {
                 const { data, error } = await supabaseClient
                     .from('prayers')
@@ -103,6 +113,12 @@
             } catch (err) {
                 alert('Erro ao enviar pedido de oração. Por favor, tente novamente.');
                 console.error(err);
+                
+                // Restaurar o botão em caso de erro
+                btn.disabled = false;
+                btn.style.opacity = '1';
+                btn.style.cursor = 'pointer';
+                btnText.innerText = originalText;
             }
         });
     </script>
