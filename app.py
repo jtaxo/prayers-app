@@ -28,7 +28,7 @@ def serve_root(path):
 
 if __name__ == "__main__":
     print("=====================================================")
-    print("🚀 Servidor local a correr!")
+    print("Servidor local a correr!")
     print("Abra o seu browser em: http://localhost:5000")
     print("=====================================================")
     app.run(host="0.0.0.0", port=5000, debug=True)
