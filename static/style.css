@@ -312,8 +312,7 @@ button:active {
     font-size: 20px;
     font-weight: 500;
     color: #f8fafc;
-    letter-spacing: 2px;
-    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .layout-split {
