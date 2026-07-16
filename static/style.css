@@ -395,6 +395,14 @@ button:active {
     max-width: 450px;
 }
 
+.form-title {
+    font-size: 22px;
+    font-weight: 600;
+    color: #f8fafc;
+    margin-bottom: 24px;
+    text-align: center;
+}
+
 /* Bolas azuis removidas a pedido do utilizador */
 
 @keyframes fadeInLeft {
