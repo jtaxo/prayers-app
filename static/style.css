@@ -1,470 +1,225 @@
-/* Fonts and Global Variables */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
-
-:root {
-    --bg-dark: #050816;
-    --text-main: #ffffff;
-    --text-muted: #a1a1aa;
-    --primary: #3b82f6;
-    --primary-light: #60a5fa;
-    --secondary: #8b5cf6;
-    --glass-bg: rgba(255, 255, 255, 0.03);
-    --glass-border: rgba(255, 255, 255, 0.08);
-    --glass-blur: blur(30px);
-}
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
 * {
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 body {
     font-family: 'Inter', sans-serif;
-    background-color: var(--bg-dark);
-    color: var(--text-main);
+    background-color: #111526; /* Deep dark blue background */
+    color: white;
     min-height: 100vh;
-    overflow-x: hidden;
     position: relative;
-    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
 }
 
-/* -------------------------------------
-   Ambient Glow & Particles (JS Target)
-   ------------------------------------- */
-#ambient-glow {
-    position: fixed;
-    top: 0; left: 0;
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(circle, rgba(96,165,250,0.15) 0%, rgba(5,8,22,0) 70%);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 1;
+/* Backgrounds */
+.glow-bg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
     transform: translate(-50%, -50%);
-    will-change: transform;
-}
-
-#particles-container {
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    pointer-events: none;
-    z-index: 2;
-}
-
-.particle {
-    position: absolute;
-    background: rgba(255,255,255,0.4);
-    border-radius: 50%;
-    animation: floatParticle linear infinite;
-}
-
-@keyframes floatParticle {
-    0% { transform: translateY(0) translateX(0); opacity: 0; }
-    10% { opacity: 1; }
-    90% { opacity: 1; }
-    100% { transform: translateY(-100vh) translateX(100px); opacity: 0; }
-}
-
-/* -------------------------------------
-   Mesh Gradient Background
-   ------------------------------------- */
-.mesh-bg {
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    z-index: 0;
-    overflow: hidden;
+    width: 900px;
+    height: 900px;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.25) 0%, transparent 65%);
+    z-index: -2;
     pointer-events: none;
 }
 
-.mesh-blob {
+.watermark {
     position: absolute;
-    filter: blur(140px);
-    border-radius: 50%;
-    opacity: 0.4;
-    animation: floatBlob 25s infinite alternate cubic-bezier(0.4, 0, 0.2, 1);
+    top: 50%;
+    left: -150px;
+    transform: translateY(-50%);
+    width: 900px;
+    height: 900px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    filter: invert(1);
+    opacity: 0.02;
+    z-index: -1;
+    pointer-events: none;
 }
 
-.blob-1 {
-    width: 60vw; height: 60vw;
-    background: #1d4ed8;
-    top: -20%; left: -10%;
-}
-
-.blob-2 {
-    width: 50vw; height: 50vw;
-    background: #6d28d9;
-    bottom: -10%; right: -10%;
-    animation-delay: -5s;
-}
-
-.blob-3 {
-    width: 40vw; height: 40vw;
-    background: #3b82f6;
-    top: 40%; left: 30%;
-    animation-delay: -10s;
-}
-
-@keyframes floatBlob {
-    0% { transform: translate(0, 0) scale(1); }
-    100% { transform: translate(15%, 15%) scale(1.1); }
-}
-
-/* -------------------------------------
-   Header / Branding
-   ------------------------------------- */
-.premium-header {
+/* Header */
+.brand-pill {
     position: absolute;
     top: 40px;
-    left: 80px;
-    z-index: 20;
-}
-
-.brand-pill {
+    left: 60px;
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    padding: 8px 20px;
+    gap: 6px;
+    padding: 10px 20px;
     background: rgba(255, 255, 255, 0.05);
-    border: 1px solid var(--glass-border);
-    border-radius: 100px;
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    z-index: 10;
 }
 
-.brand-logo {
-    height: 24px;
-    filter: invert(1) opacity(0.7);
-    margin-right: 2px;
-}
-
-.brand-accent {
-    font-weight: 800;
-    color: var(--primary-light);
+.brand-ad {
+    color: #60a5fa;
+    font-weight: 700;
     font-size: 16px;
-    letter-spacing: 1px;
 }
 
 .brand-text {
-    font-weight: 500;
-    color: var(--text-main);
+    color: #e2e8f0;
+    font-weight: 600;
     font-size: 16px;
-    letter-spacing: 1px;
 }
 
-/* -------------------------------------
-   Layout & Hero
-   ------------------------------------- */
-.premium-layout {
+/* Layout */
+.layout-split {
     display: flex;
-    min-height: 100vh;
-    width: 100%;
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 120px 80px 80px;
     align-items: center;
-    justify-content: space-between;
-    gap: 60px;
+    justify-content: center;
+    gap: 120px;
+    min-height: 100vh;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
     position: relative;
-    z-index: 10;
+    z-index: 5;
 }
 
+/* Hero */
 .hero-section {
     flex: 1;
-    max-width: 600px;
-}
-
-.badge {
-    display: inline-block;
-    padding: 6px 16px;
-    background: rgba(59, 130, 246, 0.1);
-    border: 1px solid rgba(59, 130, 246, 0.2);
-    border-radius: 100px;
-    color: var(--primary-light);
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    margin-bottom: 24px;
+    max-width: 480px;
 }
 
 .hero-title {
-    font-size: clamp(48px, 5vw, 72px);
+    font-size: 64px;
     font-weight: 800;
-    line-height: 1.1;
-    letter-spacing: -1px;
-    margin-bottom: 24px;
-}
-
-.text-gradient {
-    background: linear-gradient(135deg, #60a5fa 0%, #c084fc 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    display: inline-block;
+    margin-bottom: 5px;
+    letter-spacing: 1px;
 }
 
 .hero-subtitle {
-    font-size: 18px;
-    line-height: 1.6;
-    color: var(--text-muted);
-    font-weight: 400;
-}
-
-/* -------------------------------------
-   Form Section & Glass Card
-   ------------------------------------- */
-.form-section {
-    flex: 1;
-    max-width: 480px;
-    display: flex;
-    flex-direction: column;
-    perspective: 1200px;
-}
-
-.form-header {
-    margin-bottom: 24px;
-}
-
-.form-header h3 {
     font-size: 24px;
-    font-weight: 600;
-    margin-bottom: 4px;
+    font-weight: 700;
+    margin-bottom: 24px;
     color: #f8fafc;
 }
 
-.form-header p {
-    color: var(--text-muted);
+.hero-text {
     font-size: 15px;
+    line-height: 1.6;
+    color: #cbd5e1;
 }
 
-.glass-card {
-    background: var(--glass-bg);
-    backdrop-filter: var(--glass-blur);
-    -webkit-backdrop-filter: var(--glass-blur);
-    border: 1px solid var(--glass-border);
-    border-radius: 24px;
-    padding: 40px;
-    box-shadow: 0 30px 60px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.1);
-    position: relative;
-    overflow: hidden;
-    transition: transform 0.1s cubic-bezier(0.2, 0.8, 0.2, 1);
-    transform-style: preserve-3d;
-}
-
-.glass-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0; height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-}
-
-/* Floating Label Inputs */
-.premium-form {
+/* Form */
+.form-section {
+    flex: 1;
+    max-width: 420px;
     display: flex;
     flex-direction: column;
-    gap: 24px;
 }
 
-.input-group {
-    position: relative;
+.form-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: white;
+    text-align: center;
+    margin-bottom: 20px;
 }
 
-.input-group input,
-.input-group textarea {
-    width: 100%;
-    background: rgba(255,255,255,0.03);
-    border: 1px solid var(--glass-border);
+.form-card {
+    background-color: #1e2436; /* Match the screenshot form bg */
     border-radius: 16px;
-    padding: 24px 20px 10px; /* Padding for floating label */
-    color: var(--text-main);
-    font-size: 16px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #cbd5e1;
+    margin-bottom: 8px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    background-color: #131724; /* Match screenshot input bg */
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+    padding: 12px 16px;
+    color: white;
+    font-size: 14px;
     font-family: 'Inter', sans-serif;
     outline: none;
-    transition: all 0.3s ease;
+    transition: border-color 0.2s;
 }
 
-.input-group textarea {
-    min-height: 120px;
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #60a5fa;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #475569;
+}
+
+.form-group textarea {
+    min-height: 100px;
     resize: vertical;
 }
 
-.input-group label {
-    position: absolute;
-    left: 20px;
-    top: 18px;
-    color: var(--text-muted);
-    font-size: 16px;
-    pointer-events: none;
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.input-group input:focus ~ label,
-.input-group input:not(:placeholder-shown) ~ label,
-.input-group textarea:focus ~ label,
-.input-group textarea:not(:placeholder-shown) ~ label {
-    top: 6px;
-    font-size: 11px;
-    color: var(--primary-light);
-    font-weight: 500;
-}
-
-.input-border {
-    position: absolute;
-    bottom: 0; left: 0; width: 100%; height: 100%;
-    border-radius: 16px;
-    pointer-events: none;
-    box-shadow: 0 0 0 2px transparent;
-    transition: box-shadow 0.3s ease;
-}
-
-.input-group input:focus ~ .input-border,
-.input-group textarea:focus ~ .input-border {
-    box-shadow: 0 0 0 1px var(--primary-light), 0 0 20px rgba(96, 165, 250, 0.2);
-}
-
-/* Premium Button */
-.premium-btn {
-    position: relative;
+.submit-btn {
     width: 100%;
-    padding: 16px;
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    padding: 14px;
+    background: linear-gradient(90deg, #5b8def, #9074ff);
     border: none;
-    border-radius: 16px;
-    color: white;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    overflow: hidden;
-    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
-    margin-top: 10px;
-    box-shadow: 0 10px 20px rgba(99, 102, 241, 0.2);
-}
-
-.btn-text {
-    position: relative;
-    z-index: 2;
-}
-
-.btn-glow {
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: linear-gradient(135deg, var(--primary-light), #c084fc);
-    opacity: 0;
-    transition: opacity 0.3s;
-    z-index: 1;
-}
-
-.premium-btn:hover .btn-glow {
-    opacity: 1;
-}
-
-.premium-btn:active {
-    transform: scale(0.96);
-}
-
-/* Ripple effect inside button */
-.ripple {
-    position: absolute;
-    border-radius: 50%;
-    transform: scale(0);
-    animation: rippleAnim 0.6s linear;
-    background-color: rgba(255, 255, 255, 0.4);
-    z-index: 3;
-    pointer-events: none;
-}
-
-@keyframes rippleAnim {
-    to { transform: scale(4); opacity: 0; }
-}
-
-/* Animations */
-.stagger-1 { opacity: 0; animation: blurReveal 1s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.1s; }
-.stagger-2 { opacity: 0; animation: blurReveal 1s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.2s; }
-.stagger-3 { opacity: 0; animation: blurReveal 1s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.3s; }
-
-@keyframes blurReveal {
-    from { opacity: 0; transform: translateY(20px); filter: blur(10px); }
-    to { opacity: 1; transform: translateY(0); filter: blur(0); }
-}
-
-/* -------------------------------------
-   Legacy Fallbacks (Admin, Success)
-   ------------------------------------- */
-.container {
-    background: var(--glass-bg);
-    backdrop-filter: var(--glass-blur);
-    border: 1px solid var(--glass-border);
-    border-radius: 20px;
-    padding: 40px;
-    width: 100%;
-    max-width: 400px;
-    margin: 80px auto;
-    text-align: center;
-    position: relative;
-    z-index: 10;
-}
-.container h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; background: linear-gradient(to right, #60a5fa, #c084fc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-.admin-container {
-    max-width: 800px;
-    width: 100%;
-    margin: 80px auto;
-    position: relative;
-    z-index: 10;
-    padding: 0 20px;
-}
-.header-actions { display: flex; justify-content: space-between; margin-bottom: 30px; }
-.prayer-grid { display: grid; gap: 20px; }
-.prayer-card {
-    background: var(--glass-bg);
-    border: 1px solid var(--glass-border);
-    backdrop-filter: var(--glass-blur);
-    border-radius: 16px;
-    padding: 24px;
-    transition: transform 0.2s, border-color 0.2s;
-}
-.prayer-card:hover {
-    transform: translateY(-2px);
-    border-color: var(--primary-light);
-}
-.prayer-header { display: flex; justify-content: space-between; border-bottom: 1px solid var(--glass-border); padding-bottom: 12px; margin-bottom: 12px; }
-.prayer-name { font-weight: 600; font-size: 18px; color: var(--text-main); }
-.prayer-date { font-size: 12px; color: var(--text-muted); }
-.prayer-phone { color: var(--primary-light); font-size: 14px; margin-top: 4px; }
-.prayer-body { white-space: pre-wrap; font-size: 15px; color: #e2e8f0; }
-.empty-state { text-align: center; padding: 40px; color: var(--text-muted); }
-.qr-section { text-align: center; margin-top: 30px; border-top: 1px solid var(--glass-border); padding-top: 20px; }
-.qr-section img { border-radius: 12px; }
-.btn-secondary {
-    background: transparent;
-    border: 1px solid var(--glass-border);
-    color: var(--text-main);
-    padding: 8px 16px;
     border-radius: 8px;
+    color: white;
+    font-size: 15px;
+    font-weight: 700;
     cursor: pointer;
-    transition: background 0.2s;
+    transition: opacity 0.2s;
 }
-.btn-secondary:hover { background: rgba(255,255,255,0.1); }
-.success-icon { font-size: 64px; text-align: center; display: block; margin-bottom: 20px; }
 
-/* Responsive Media Queries */
+.submit-btn:hover {
+    opacity: 0.9;
+}
+
+/* Responsive */
 @media (max-width: 900px) {
-    .premium-layout {
+    .layout-split {
         flex-direction: column;
-        padding: 120px 30px 60px;
+        gap: 50px;
         text-align: center;
-        gap: 40px;
+        padding-top: 100px;
     }
-    .premium-header {
+    .brand-pill {
         left: 50%;
         transform: translateX(-50%);
     }
-    .hero-title {
-        text-align: center;
-    }
-    .form-header {
-        text-align: left;
-    }
-    .glass-card {
-        padding: 30px 20px;
+    .watermark {
+        left: 50%;
+        transform: translate(-50%, -50%);
     }
 }
+
+/* KEEP ADMIN & OTHER STYLES INTACT */
+.admin-container { max-width: 800px; width: 100%; margin: 80px auto; position: relative; z-index: 10; padding: 0 20px; }
+.header-actions { display: flex; justify-content: space-between; margin-bottom: 30px; }
+.prayer-grid { display: grid; gap: 20px; }
+.prayer-card { background: #1e2436; border: 1px solid rgba(255,255,255,0.05); border-radius: 12px; padding: 24px; }
+.prayer-header { display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 12px; margin-bottom: 12px; }
+.prayer-name { font-weight: 600; font-size: 18px; color: white; }
+.prayer-date { font-size: 12px; color: #94a3b8; }
+.prayer-phone { color: #60a5fa; font-size: 14px; margin-top: 4px; }
+.prayer-body { white-space: pre-wrap; font-size: 15px; color: #cbd5e1; }
+.btn-secondary { background: transparent; border: 1px solid rgba(255,255,255,0.1); color: white; padding: 8px 16px; border-radius: 6px; cursor: pointer; }
+.container { background: #1e2436; border-radius: 16px; padding: 40px; width: 100%; max-width: 400px; margin: 80px auto; text-align: center; border: 1px solid rgba(255,255,255,0.05); }

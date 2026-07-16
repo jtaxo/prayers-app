@@ -4,75 +4,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pedidos de Oração - AD Azambuja</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-<body class="loading">
-    <!-- Ambient glow for mouse tracking -->
-    <div id="ambient-glow"></div>
-    <div id="particles-container"></div>
-    
-    <!-- Animated Mesh Gradient Background -->
-    <div class="mesh-bg">
-        <div class="mesh-blob blob-1"></div>
-        <div class="mesh-blob blob-2"></div>
-        <div class="mesh-blob blob-3"></div>
+<body>
+    <!-- Background Elements -->
+    <div class="glow-bg"></div>
+    <div class="watermark" style="background-image: url('{{ url_for('static', filename='logo.png') }}');"></div>
+
+    <!-- Header -->
+    <div class="brand-pill">
+        <span class="brand-ad">AD</span>
+        <span class="brand-text">Azambuja</span>
     </div>
 
-    <!-- Top Left Brand -->
-    <header class="premium-header stagger-1">
-        <div class="brand-pill">
-            <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo" class="brand-logo">
-            <span class="brand-accent">AD</span>
-            <span class="brand-text">Azambuja</span>
+    <!-- Layout -->
+    <div class="layout-split">
+        <div class="hero-section">
+            <h1 class="hero-title">BEM-VINDO</h1>
+            <h2 class="hero-subtitle">PEDIDOS DE ORAÇÃO</h2>
+            <p class="hero-text">Não está sozinho. Deixe o seu pedido e a nossa igreja estará a orar por si e pela sua família. O seu pedido será tratado com o máximo respeito e confidencialidade.</p>
         </div>
-    </header>
 
-    <main class="premium-layout">
-        <!-- Lado esquerdo: Texto Hero -->
-        <section class="hero-section stagger-2">
-            <div class="hero-content">
-                <div class="badge">Uma comunidade de fé</div>
-                <h1 class="hero-title">Partilhe o seu <br/><span class="text-gradient">Pedido de Oração</span></h1>
-                <p class="hero-subtitle">Não caminhe sozinho. Deixe o seu pedido e a nossa igreja estará a orar por si e pela sua família com total confidencialidade e respeito.</p>
-            </div>
-        </section>
-
-        <!-- Lado direito: Formulário Floating Glass -->
-        <section class="form-section stagger-3">
-            <div class="form-header">
-                <h3>Deixe o seu pedido</h3>
-                <p>Estaremos consigo em oração.</p>
-            </div>
-            <div class="glass-card">
-                <form method="POST" action="/" class="premium-form">
-                    <div class="input-group">
-                        <input type="text" id="nome" name="nome" required placeholder=" ">
+        <div class="form-section">
+            <h3 class="form-title">Deixe aqui o seu pedido.</h3>
+            <div class="form-card">
+                <form method="POST" action="/">
+                    <div class="form-group">
                         <label for="nome">O seu Nome</label>
-                        <div class="input-border"></div>
+                        <input type="text" id="nome" name="nome" required placeholder="Ex: João Silva">
                     </div>
 
-                    <div class="input-group">
-                        <input type="tel" id="telemovel" name="telemovel" placeholder=" ">
+                    <div class="form-group">
                         <label for="telemovel">O seu Telemóvel (Opcional)</label>
-                        <div class="input-border"></div>
+                        <input type="tel" id="telemovel" name="telemovel" placeholder="Ex: 912 345 678">
                     </div>
                     
-                    <div class="input-group textarea-group">
-                        <textarea id="assunto" name="assunto" required placeholder=" "></textarea>
+                    <div class="form-group">
                         <label for="assunto">Assunto de Oração</label>
-                        <div class="input-border"></div>
+                        <textarea id="assunto" name="assunto" required placeholder="Descreva aqui o seu pedido de oração..."></textarea>
                     </div>
                     
-                    <button type="submit" class="premium-btn magnetic-btn">
-                        <span class="btn-text">Enviar Pedido</span>
-                        <div class="btn-glow"></div>
-                    </button>
+                    <button type="submit" class="submit-btn">Enviar Pedido</button>
                 </form>
             </div>
-        </section>
-    </main>
-
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
+        </div>
+    </div>
 </body>
 </html>
