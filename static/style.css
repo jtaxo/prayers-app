@@ -362,32 +362,7 @@ button:active {
 }
 
 .form-container {
-    background: white;
-    color: #333;
-    padding: 50px;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-    border-radius: 24px;
-    border: none;
     max-width: 450px;
-}
-
-.form-container label {
-    color: #475569;
-}
-
-.form-container input[type="text"],
-.form-container input[type="tel"],
-.form-container textarea {
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
-    color: #1e293b;
-}
-
-.form-container input:focus,
-.form-container textarea:focus {
-    border-color: #3b82f6;
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
-    background: white;
 }
 
 /* Formas Abstractas no Fundo (bolas / círculos como na imagem de referência) */
