@@ -47,13 +47,9 @@
     <script src="static/js/supabase.js"></script>
     <script>
         // Check if already logged in
-        async function checkSession() {
-            const { data } = await supabaseClient.auth.getSession();
-            if (data.session) {
-                window.location.href = 'admin.html';
-            }
+        if (localStorage.getItem('admin_auth') === 'true') {
+            window.location.href = 'admin.html';
         }
-        checkSession();
 
         document.getElementById('loginForm').addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -62,19 +58,12 @@
             
             errorDiv.style.display = 'none';
 
-            try {
-                // We use a fixed email for the admin login to keep it password-only for the user
-                const { data, error } = await supabaseClient.auth.signInWithPassword({
-                    email: 'admin@adazambuja.pt',
-                    password: password
-                });
-
-                if (error) throw error;
-
+            // Palavra-passe estática (1234)
+            if (password === '1234') {
+                localStorage.setItem('admin_auth', 'true');
                 window.location.href = 'admin.html';
-            } catch (err) {
+            } else {
                 errorDiv.style.display = 'block';
-                console.error(err);
             }
         });
     </script>
