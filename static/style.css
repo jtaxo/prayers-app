@@ -2,14 +2,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
 :root {
-    --bg-dark: #050816;
-    --text-main: #ffffff;
-    --text-muted: #a1a1aa;
-    --primary: #3b82f6;
-    --primary-light: #60a5fa;
-    --secondary: #8b5cf6;
-    --glass-bg: rgba(255, 255, 255, 0.03);
-    --glass-border: rgba(255, 255, 255, 0.08);
+    --bg-dark: #0a0b0c; /* Deep charcoal almost black */
+    --text-main: #f5ece1; /* Creamy off-white for the main text */
+    --text-muted: #9ca3af;
+    --primary: #d0705a; /* Warm terracotta/copper from the image lines */
+    --primary-light: #e48a76; /* Lighter copper */
+    --secondary: #a8523f; /* Darker rust */
+    --glass-bg: rgba(255, 255, 255, 0.02);
+    --glass-border: rgba(255, 255, 255, 0.05);
     --glass-blur: blur(30px);
 }
 
@@ -38,7 +38,7 @@ body {
     left: 0;
     width: 600px;
     height: 600px;
-    background: radial-gradient(circle, rgba(96, 165, 250, 0.15) 0%, rgba(5, 8, 22, 0) 70%);
+    background: radial-gradient(circle, rgba(208, 112, 90, 0.12) 0%, rgba(10, 11, 12, 0) 70%);
     border-radius: 50%;
     pointer-events: none;
     z-index: 1;
@@ -108,7 +108,8 @@ body {
 .blob-1 {
     width: 60vw;
     height: 60vw;
-    background: #1d4ed8;
+    background: #d0705a; /* Copper */
+    opacity: 0.15;
     top: -20%;
     left: -10%;
 }
@@ -116,7 +117,8 @@ body {
 .blob-2 {
     width: 50vw;
     height: 50vw;
-    background: #6d28d9;
+    background: #a8523f; /* Rust */
+    opacity: 0.15;
     bottom: -10%;
     right: -10%;
     animation-delay: -5s;
@@ -125,7 +127,8 @@ body {
 .blob-3 {
     width: 40vw;
     height: 40vw;
-    background: #3b82f6;
+    background: #8b7355; /* Warm Earth */
+    opacity: 0.12;
     top: 40%;
     left: 30%;
     animation-delay: -10s;
@@ -165,26 +168,27 @@ body {
 }
 
 .brand-logo {
-    height: 38px;
-    /* Invert makes the white circle black and black lines white.
-       mix-blend-mode: screen makes the black invisible, leaving only the logo lines! */
-    filter: invert(1) opacity(0.85);
-    mix-blend-mode: screen;
-    margin-right: 6px;
+    height: 60px;
+    /* Soft translucent cream/copper tone to match the new dark charcoal theme */
+    filter: invert(0.9) sepia(0.2) hue-rotate(340deg) saturate(1.5) opacity(0.8);
+    margin-right: 4px;
 }
 
 .brand-accent {
     font-weight: 800;
     color: var(--primary-light);
-    font-size: 16px;
+    font-size: 20px;
     letter-spacing: 1px;
+    margin-left: -10px;
+    margin-right: -5px;
 }
 
 .brand-text {
     font-weight: 500;
     color: var(--text-main);
-    font-size: 16px;
+    font-size: 20px;
     letter-spacing: 1px;
+    padding-right: 10px;
 }
 
 /* -------------------------------------
@@ -212,8 +216,8 @@ body {
 .badge {
     display: inline-block;
     padding: 6px 16px;
-    background: rgba(59, 130, 246, 0.1);
-    border: 1px solid rgba(59, 130, 246, 0.2);
+    background: rgba(208, 112, 90, 0.1); /* Soft copper background */
+    border: 1px solid rgba(208, 112, 90, 0.2);
     border-radius: 100px;
     color: var(--primary-light);
     font-size: 13px;
@@ -231,7 +235,7 @@ body {
 }
 
 .text-gradient {
-    background: linear-gradient(135deg, #60a5fa 0%, #c084fc 100%);
+    background: linear-gradient(135deg, #f5ece1 0%, #d0705a 150%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     display: inline-block;
