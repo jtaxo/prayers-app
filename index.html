@@ -8,8 +8,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="static/css/style.css?v=2">
-    <!-- Supabase JS Client -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 
 <body class="loading">
@@ -91,8 +89,10 @@
     </div>
 
     <script src="static/js/script.js"></script>
-    <script src="static/js/supabase.js"></script>
     <script>
+        const SUPABASE_URL = "https://ujfbjtstkiaeldqxbdvp.supabase.co";
+        const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVqZmJqdHN0a2lhZWxkcXhiZHZwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQxOTc2NzQsImV4cCI6MjA5OTc3MzY3NH0.mo-fEUUOatYTzFnscvGr3Ph9hc1XcLMtYJkM4cpFFXs";
+
         document.getElementById('prayerForm').addEventListener('submit', async (e) => {
             e.preventDefault();
 
