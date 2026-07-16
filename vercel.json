@@ -2,7 +2,9 @@
   "cleanUrls": true,
   "builds": [
     { "src": "index.html", "use": "@vercel/static" },
-    { "src": "pages/**", "use": "@vercel/static" },
-    { "src": "assets/**", "use": "@vercel/static" }
+    { "src": "success.html", "use": "@vercel/static" },
+    { "src": "admin.html", "use": "@vercel/static" },
+    { "src": "login.html", "use": "@vercel/static" },
+    { "src": "static/**", "use": "@vercel/static" }
   ]
 }
