@@ -288,16 +288,32 @@ button:active {
     top: 40px;
     left: 60px;
     z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 24px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 30px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     animation: fadeInDown 0.8s ease-out;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
-.brand-top-left span {
-    font-size: 24px;
-    font-weight: 700;
-    color: white;
+.brand-highlight {
+    font-size: 20px;
+    font-weight: 800;
+    color: #60a5fa; /* A bright blue that pops on the dark background */
+    letter-spacing: 1px;
+}
+
+.brand-text {
+    font-size: 20px;
+    font-weight: 500;
+    color: #f8fafc;
     letter-spacing: 2px;
     text-transform: uppercase;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
 .layout-split {
