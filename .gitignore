@@ -1,8 +1,23 @@
+# Python
 *.pyc
 __pycache__/
-instance/
-.pytest_cache/
-.DS_Store
-prayers.db
 venv/
 .env
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Database (local)
+prayers.db
+
+# Node
+node_modules/
+
+# Pytest
+instance/
+.pytest_cache/
