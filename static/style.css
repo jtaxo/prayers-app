@@ -597,8 +597,22 @@ body {
     }
 
     .premium-header {
-        left: 50%;
-        transform: translateX(-50%);
+        left: 20px;
+        top: 20px;
+        transform: none;
+    }
+
+    .brand-pill {
+        padding: 6px 14px;
+    }
+
+    .brand-logo {
+        height: 32px;
+        margin-right: 2px;
+    }
+
+    .brand-accent, .brand-text {
+        font-size: 14px;
     }
 
     .hero-title {
