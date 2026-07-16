@@ -34,11 +34,11 @@ body {
 body::before {
     content: "";
     position: fixed;
-    top: 50%;
-    left: 50%;
+    top: 45%;
+    left: 20%;
     transform: translate(-50%, -50%);
-    width: 90vmin;
-    height: 90vmin;
+    width: 130vmin;
+    height: 130vmin;
     background-image: url('logo.png');
     background-size: contain;
     background-repeat: no-repeat;
@@ -277,4 +277,191 @@ button:active {
 .qr-section img {
     border-radius: 8px;
     margin-bottom: 10px;
+}
+
+/* =========================================
+   FUTURISTIC LAYOUT - AD AZAMBUJA
+   ========================================= */
+
+.brand-header {
+    position: absolute;
+    top: 40px;
+    left: 60px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    z-index: 10;
+    animation: fadeInDown 0.8s ease-out;
+}
+
+.brand-header img {
+    height: 60px;
+    /* Inverte as cores da imagem para ficar branca sobre o fundo escuro/azul */
+    filter: invert(1) drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+}
+
+.brand-header span {
+    font-size: 24px;
+    font-weight: 700;
+    color: white;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.layout-split {
+    display: flex;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 80vh;
+    z-index: 5;
+    position: relative;
+    padding-top: 80px;
+}
+
+.hero-section {
+    flex: 1;
+    padding-right: 60px;
+    color: white;
+    animation: fadeInLeft 0.8s ease-out;
+}
+
+.hero-title {
+    font-size: 64px;
+    font-weight: 800;
+    margin-bottom: 0;
+    letter-spacing: 2px;
+    background: none;
+    -webkit-text-fill-color: white;
+    text-align: left;
+}
+
+.hero-subtitle {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #e0f2fe;
+    letter-spacing: 1px;
+}
+
+.hero-text {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #bae6fd;
+    max-width: 450px;
+}
+
+.form-section {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    animation: fadeInRight 0.8s ease-out;
+}
+
+.form-container {
+    background: white;
+    color: #333;
+    padding: 50px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    border-radius: 24px;
+    border: none;
+    max-width: 450px;
+}
+
+.form-container label {
+    color: #475569;
+}
+
+.form-container input[type="text"],
+.form-container input[type="tel"],
+.form-container textarea {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    color: #1e293b;
+}
+
+.form-container input:focus,
+.form-container textarea:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+    background: white;
+}
+
+/* Formas Abstractas no Fundo (bolas / círculos como na imagem de referência) */
+.abstract-shape {
+    position: fixed;
+    border-radius: 50%;
+    z-index: -2;
+    filter: blur(2px);
+}
+
+.shape-1 {
+    width: 800px;
+    height: 800px;
+    background: linear-gradient(135deg, #1d4ed8 0%, #1e3a8a 100%);
+    top: -200px;
+    left: -200px;
+    opacity: 0.8;
+}
+
+.shape-2 {
+    width: 600px;
+    height: 600px;
+    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+    bottom: -150px;
+    left: 20%;
+    opacity: 0.6;
+}
+
+@keyframes fadeInLeft {
+    from { opacity: 0; transform: translateX(-40px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeInRight {
+    from { opacity: 0; transform: translateX(40px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 900px) {
+    .layout-split {
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        padding-top: 100px;
+    }
+    
+    .hero-section {
+        padding-right: 0;
+        margin-bottom: 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .hero-title {
+        font-size: 48px;
+        text-align: center;
+    }
+    
+    .brand-header {
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .form-section {
+        justify-content: center;
+        width: 100%;
+    }
 }
