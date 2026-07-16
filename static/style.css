@@ -608,9 +608,9 @@ body {
     .premium-layout {
         flex-direction: column;
         justify-content: center;
-        padding: 100px 24px 40px;
+        padding: 140px 24px 40px;
         text-align: center;
-        gap: 30px;
+        gap: 16px;
     }
 
     .premium-header {
