@@ -387,6 +387,7 @@ button:active {
     flex: 1;
     max-width: 450px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     animation: fadeInRight 0.8s ease-out;
 }
@@ -396,11 +397,12 @@ button:active {
 }
 
 .form-title {
-    font-size: 22px;
+    font-size: 24px;
     font-weight: 600;
     color: #f8fafc;
-    margin-bottom: 24px;
+    margin-bottom: 16px;
     text-align: center;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
 /* Bolas azuis removidas a pedido do utilizador */
