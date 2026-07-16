@@ -283,20 +283,15 @@ button:active {
    FUTURISTIC LAYOUT - AD AZAMBUJA
    ========================================= */
 
-.brand-inline {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    margin-bottom: 30px;
+.brand-top-left {
+    position: absolute;
+    top: 40px;
+    left: 60px;
+    z-index: 10;
     animation: fadeInDown 0.8s ease-out;
 }
 
-.brand-inline img {
-    height: 60px;
-    filter: invert(1) drop-shadow(0 4px 6px rgba(0,0,0,0.3));
-}
-
-.brand-inline span {
+.brand-top-left span {
     font-size: 24px;
     font-weight: 700;
     color: white;
@@ -423,8 +418,12 @@ button:active {
         text-align: center;
     }
     
-    .brand-inline {
-        justify-content: center;
+    .brand-top-left {
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        text-align: center;
     }
     
     .form-section {
