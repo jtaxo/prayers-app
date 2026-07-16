@@ -2,12 +2,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
 :root {
-    --bg-dark: #0a0b0c; /* Deep charcoal almost black */
-    --text-main: #f5ece1; /* Creamy off-white for the main text */
+    --bg-dark: #0a0b0c;
+    /* Deep charcoal almost black */
+    --text-main: #f5ece1;
+    /* Creamy off-white for the main text */
     --text-muted: #9ca3af;
-    --primary: #d0705a; /* Warm terracotta/copper from the image lines */
-    --primary-light: #e48a76; /* Lighter copper */
-    --secondary: #a8523f; /* Darker rust */
+    --primary: #d0705a;
+    /* Warm terracotta/copper from the image lines */
+    --primary-light: #e48a76;
+    /* Lighter copper */
+    --secondary: #a8523f;
+    /* Darker rust */
     --glass-bg: rgba(255, 255, 255, 0.02);
     --glass-border: rgba(255, 255, 255, 0.05);
     --glass-blur: blur(30px);
@@ -108,7 +113,8 @@ body {
 .blob-1 {
     width: 60vw;
     height: 60vw;
-    background: #d0705a; /* Copper */
+    background: #d0705a;
+    /* Copper */
     opacity: 0.15;
     top: -20%;
     left: -10%;
@@ -117,7 +123,8 @@ body {
 .blob-2 {
     width: 50vw;
     height: 50vw;
-    background: #a8523f; /* Rust */
+    background: #a8523f;
+    /* Rust */
     opacity: 0.15;
     bottom: -10%;
     right: -10%;
@@ -127,7 +134,8 @@ body {
 .blob-3 {
     width: 40vw;
     height: 40vw;
-    background: #8b7355; /* Warm Earth */
+    background: #8b7355;
+    /* Warm Earth */
     opacity: 0.12;
     top: 40%;
     left: 30%;
@@ -168,7 +176,7 @@ body {
 }
 
 .brand-logo {
-    height: 60px;
+    height: 50px;
     /* Soft translucent cream/copper tone to match the new dark charcoal theme */
     filter: invert(0.9) sepia(0.2) hue-rotate(340deg) saturate(1.5) opacity(0.8);
     margin-right: 4px;
@@ -216,7 +224,8 @@ body {
 .badge {
     display: inline-block;
     padding: 4px 12px;
-    background: rgba(208, 112, 90, 0.1); /* Soft copper background */
+    background: rgba(208, 112, 90, 0.1);
+    /* Soft copper background */
     border: 1px solid rgba(208, 112, 90, 0.2);
     border-radius: 100px;
     color: var(--primary-light);
@@ -242,7 +251,7 @@ body {
 }
 
 .text-gradient {
-    background: linear-gradient(135deg, #f5ece1 0%, #d0705a 150%);
+    background: linear-gradient(135deg, var(--primary-light) 0%, var(--secondary) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     display: inline-block;
@@ -623,7 +632,8 @@ body {
         margin-right: 2px;
     }
 
-    .brand-accent, .brand-text {
+    .brand-accent,
+    .brand-text {
         font-size: 14px;
     }
 
