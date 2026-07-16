@@ -35,7 +35,7 @@
 
     <div class="badge top-right-badge stagger-1">Uma comunidade de fé</div>
 
-    <main class="premium-layout">
+    <main class="premium-layout" id="form-section">
         <!-- Lado esquerdo: Texto Hero -->
         <section class="hero-section stagger-2">
             <div class="hero-content">
@@ -80,21 +80,32 @@
         </section>
     </main>
 
+    <!-- Secção de Sucesso (Oculta por defeito) -->
+    <div id="success-section" class="premium-layout" style="display: none; text-align: center; margin: 15vh auto; justify-content: center;">
+        <div class="glass-card" style="padding: 40px; max-width: 500px; width: 100%;">
+            <span class="success-icon" style="font-size: 50px;">✨</span>
+            <h1 class="text-gradient" style="font-size: 26px; font-weight: 800; margin: 20px 0;">Pedido Enviado!</h1>
+            <p class="subtitle" style="margin-bottom: 30px;">O seu pedido de oração foi recebido. Estaremos orando por si.</p>
+            <button id="btn-back" class="premium-btn">Enviar outro pedido</button>
+        </div>
+    </div>
+
     <script src="static/js/script.js"></script>
     <script src="static/js/supabase.js"></script>
     <script>
         document.getElementById('prayerForm').addEventListener('submit', async (e) => {
             e.preventDefault();
-            
+
             const nome = document.getElementById('nome').value.trim() || 'Anónimo';
             const telemovel = document.getElementById('telemovel').value.trim() || null;
             const assunto = document.getElementById('assunto').value.trim();
 
             if (!assunto) return;
 
-            // Feedback visual imediato
             const btn = e.target.querySelector('button[type="submit"]');
             const btnText = btn.querySelector('.btn-text');
+            const originalText = btnText.innerText;
+            
             btn.disabled = true;
             btnText.innerText = 'Enviado! ✔️';
 
@@ -111,8 +122,24 @@
                 keepalive: true // Garante que o pedido chega mesmo fechando o site!
             }).catch(err => console.error('Erro de background:', err));
 
-            // Salta para a página de sucesso INSTANTANEAMENTE
-            window.location.href = 'success.html';
+            // Transição Mágica sem carregar páginas novas
+            document.getElementById('form-section').style.display = 'none';
+            document.getElementById('success-section').style.display = 'flex';
+            window.scrollTo(0, 0);
+
+            // Preparar para o próximo pedido sem o utilizador notar
+            setTimeout(() => {
+                document.getElementById('assunto').value = '';
+                document.getElementById('telemovel').value = '';
+                btn.disabled = false;
+                btnText.innerText = originalText;
+            }, 500);
+        });
+
+        // Botão de voltar a pedir oração
+        document.getElementById('btn-back').addEventListener('click', () => {
+            document.getElementById('success-section').style.display = 'none';
+            document.getElementById('form-section').style.display = 'flex';
         });
     </script>
 </body>
