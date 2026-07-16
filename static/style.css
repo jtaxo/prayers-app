@@ -319,6 +319,27 @@ button:active {
     padding-top: 40px;
 }
 
+.form-glow-circle {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    border-radius: 50%;
+    z-index: -1;
+    filter: blur(80px);
+    opacity: 0.45;
+    top: 50%;
+    left: 50%;
+    transform: translate(-30%, -50%);
+    pointer-events: none;
+    animation: pulseGlow 4s infinite alternate;
+}
+
+@keyframes pulseGlow {
+    from { opacity: 0.35; transform: translate(-30%, -50%) scale(0.95); }
+    to { opacity: 0.55; transform: translate(-30%, -50%) scale(1.05); }
+}
+
 .hero-section {
     flex: 1;
     max-width: 500px;
