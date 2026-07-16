@@ -1,5 +1,0 @@
-Flask
-qrcode
-Pillow
-gunicorn
-psycopg2-binary
