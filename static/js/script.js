@@ -13,7 +13,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // 2. Floating Particles Generation
     const container = document.getElementById('particles-container');
     if (container) {
-        for (let i = 0; i < 30; i++) {
+        const isMobile = window.innerWidth <= 900;
+        const particleCount = isMobile ? 8 : 30;
+        for (let i = 0; i < particleCount; i++) {
             const particle = document.createElement('div');
             particle.classList.add('particle');
             

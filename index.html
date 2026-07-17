@@ -5,12 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pedidos de Oração - AD Azambuja</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="static/css/style.css?v=2">
+        rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+    <link rel="stylesheet" href="static/css/style.css?v=3">
 </head>
 
-<body class="loading">
+<body>
     <!-- Ambient glow for mouse tracking -->
     <div id="ambient-glow"></div>
     <div id="particles-container"></div>
@@ -88,7 +91,7 @@
         </div>
     </div>
 
-    <script src="static/js/script.js"></script>
+    <script src="static/js/script.js" defer></script>
     <script>
         const SUPABASE_URL = "https://ujfbjtstkiaeldqxbdvp.supabase.co";
         const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVqZmJqdHN0a2lhZWxkcXhiZHZwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQxOTc2NzQsImV4cCI6MjA5OTc3MzY3NH0.mo-fEUUOatYTzFnscvGr3Ph9hc1XcLMtYJkM4cpFFXs";
