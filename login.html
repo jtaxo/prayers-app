@@ -57,13 +57,37 @@
             const errorDiv = document.getElementById('errorMessage');
             
             errorDiv.style.display = 'none';
+            const btn = e.target.querySelector('button[type="submit"]');
+            const originalText = btn.querySelector('.btn-text').innerText;
+            btn.disabled = true;
+            btn.querySelector('.btn-text').innerText = 'A verificar...';
 
-            // Palavra-passe estática (1234)
-            if (password === '1234') {
-                localStorage.setItem('admin_auth', 'true');
-                window.location.href = 'admin.html';
-            } else {
-                errorDiv.style.display = 'block';
+            try {
+                // Vai buscar a palavra-passe à tabela 'settings' no Supabase
+                const { data, error } = await supabaseClient
+                    .from('settings')
+                    .select('admin_password')
+                    .eq('id', 1)
+                    .single();
+
+                if (error) {
+                    console.error("A tabela settings não existe ou está vazia:", error);
+                    alert("Aviso: Tabela 'settings' ainda não foi criada no Supabase!");
+                    throw error;
+                }
+
+                // Compara a palavra-passe introduzida com a que está na base de dados
+                if (password === data.admin_password) {
+                    localStorage.setItem('admin_auth', 'true');
+                    window.location.href = 'admin.html';
+                } else {
+                    errorDiv.style.display = 'block';
+                }
+            } catch (err) {
+                console.error(err);
+            } finally {
+                btn.disabled = false;
+                btn.querySelector('.btn-text').innerText = originalText;
             }
         });
     </script>
